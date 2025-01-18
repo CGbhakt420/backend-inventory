@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+</head>
+<body>
+  <h1>Items</h1>
+  <ul>
+    <% items.forEach(item => { %>
+      <li>
+        <%= item.name %> - Quantity: <%= item.quantity %>, Price: $<%= item.price %>
+        <form action="/items/<%= item.id %>/delete" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+  <form action="/items" method="POST">
+    <input type="text" name="name" placeholder="Item Name">
+    <input type="number" name="quantity" placeholder="Quantity">
+    <input type="number" step="0.01" name="price" placeholder="Price">
+    <select name="category_id">
+      <!-- Assume categories are preloaded -->
+    </select>
+    <button type="submit">Add Item</button>
+  </form>
+</body>
+</html>
